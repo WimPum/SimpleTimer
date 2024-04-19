@@ -25,11 +25,10 @@ struct ContentView: View {
                     .scaledToFit()
                     .padding(10)
                     .rotationEffect(.degrees(-90))
+                Text("\(String(format: "%02d", Int(timerCtrl.cleanedTime / 60))):\(String(format: "%02d", Int(timerCtrl.cleanedTime) % 60))") // 数字でタイマー表示(分:秒)
+                    .font(.system(size: CGFloat(100), weight: .light, design: .default))
+                    .padding()
             }
-            Text("\(String(format: "%02d", Int(timerCtrl.cleanedTime / 60))):\(String(format: "%02d", Int(timerCtrl.cleanedTime) % 60))") // 数字でタイマー表示(分:秒)
-                .font(.largeTitle)
-                .padding()
-            
             HStack { // ピッカー
                 Picker(selection: $DurationMin, label: Text("")){
                     ForEach(0..<60, id: \.self) { i in
