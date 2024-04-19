@@ -28,7 +28,7 @@ class TimerLogic: ObservableObject{
         }
         
         // タイマー宣言
-        timer = Timer.publish(every: interval, on: .main, in: .common)// intervalの間隔でthread=main
+        timer = Timer.publish(every: interval, on: .main, in: .common)// intervalの間隔でthread=main 何が間違い？？
             .autoconnect()
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: ({ _ in

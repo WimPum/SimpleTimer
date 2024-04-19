@@ -28,6 +28,7 @@ struct ContentView: View {
                 Text("\(String(format: "%02d", Int(timerCtrl.cleanedTime / 60))):\(String(format: "%02d", Int(timerCtrl.cleanedTime) % 60))") // 数字でタイマー表示(分:秒)
                     .font(.system(size: CGFloat(100), weight: .light, design: .default))
                     .padding()
+                //Text("\(timerCtrl.cleanedTime)")
             }
             HStack { // ピッカー
                 Picker(selection: $DurationMin, label: Text("")){
@@ -45,7 +46,7 @@ struct ContentView: View {
                 Spacer()
                 Button(action: {
                     if (timerCtrl.timer == nil) {
-                        timerCtrl.startTimer(interval: 0.01) // intervalは秒？
+                        timerCtrl.startTimer(interval: 0.05) // intervalは秒？ 実質精度コントロール「
                     } else {
                         timerCtrl.stopTimer()
                     }
@@ -56,6 +57,7 @@ struct ContentView: View {
                 Button(action: {
                     timerCtrl.stopTimer()
                     timerCtrl.cleanedTime = Double(DurationMin * 60 + DurationSec)
+                    print("\(timerCtrl.cleanedTime)")
                     timerCtrl.maxValue = timerCtrl.cleanedTime
                     timerCtrl.remainAmount = 1 // リセットしたら満タン
                 }){
