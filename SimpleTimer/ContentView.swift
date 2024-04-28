@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var timerCtrl: TimerLogic // タイマー
-    @FocusState private var isInputFocused: Bool //キーボードOn/Off
+    //@FocusState private var isInputFocused: Bool //キーボードOn/Off
+    @State private var isOpenPicker: Bool = false
     @AppStorage("DurationSec") private var DurationSec: Int = 20 // 残り時間（秒）設定用です
     @AppStorage("DurationMin") private var DurationMin: Int = 40 // 残り時間（分）
     var body: some View {
-        VStack {
+        VStack{
             ZStack(){ // タイマーの輪っか
                 Circle()
                     .stroke(Color.green, style: StrokeStyle(lineWidth:10))
@@ -28,51 +29,76 @@ struct ContentView: View {
                 Text("\(String(format: "%02d", Int(timerCtrl.cleanedTime / 60))):\(String(format: "%02d", Int(timerCtrl.cleanedTime) % 60))") // 数字でタイマー表示(分:秒)
                     .font(.system(size: CGFloat(100), weight: .light, design: .default))
                     .padding()
-                //Text("\(timerCtrl.cleanedTime)")
-            }
-            HStack { // ピッカー
-                Picker(selection: $DurationMin, label: Text("")){
-                    ForEach(0..<60, id: \.self) { i in
-                        Text("\(i) min").tag(i)
-                    }
-                }
-                Picker(selection: $DurationSec, label: Text("")){
-                    ForEach(0..<60, id: \.self) { i in
-                        Text("\(i) sec").tag(i)
-                    }
-                }
-            }.pickerStyle(WheelPickerStyle())
+            }.frame(height: 400)
             HStack(){ // ボタンたち
                 Spacer()
                 Button(action: {
-                    if (timerCtrl.timer == nil) {
-                        timerCtrl.startTimer(interval: 0.05) // intervalは秒？ 実質精度コントロール「
-                    } else {
-                        timerCtrl.stopTimer()
-                    }
+                    timerStartStop()
                 }){
                     Text((timerCtrl.timer != nil) ? "Stop Timer" : "Start Timer")
                 }
                 Spacer()
                 Button(action: {
-                    timerCtrl.stopTimer()
-                    timerCtrl.cleanedTime = Double(DurationMin * 60 + DurationSec)
-                    print("\(timerCtrl.cleanedTime)")
-                    timerCtrl.maxValue = timerCtrl.cleanedTime
-                    timerCtrl.remainAmount = 1 // リセットしたら満タン
+                    timerReset()
                 }){
                     Text("Reset Timer")//.border(Color.green, width: 2)
                 }
                 Spacer()
+            }.frame(height: 20)
+            .padding()
+            
+            Form{
+                Section{
+                    Button {
+                        if isOpenPicker == false{
+                            withAnimation {
+                                isOpenPicker.toggle()
+                            }
+                        }
+                        else {
+                            timerReset()
+                        }
+                    } label: {
+                        HStack {
+                            Text("開始")
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Text("\(String(format: "%02d", Int(timerCtrl.cleanedTime / 60))):\(String(format: "%02d", Int(timerCtrl.cleanedTime) % 60))")
+                                .foregroundColor(isOpenPicker ? .blue : .secondary)
+                        }
+                    }
+                    isOpenPicker ? PickerView(DurationMin: $DurationMin, DurationSec: $DurationSec) : nil
+                }
             }
+            .scrollCBIfPossible()
+            .foregroundStyle(.black)
+            .pickerStyle(WheelPickerStyle())
+            //.border(.black)
         }
         .onAppear(){
             timerCtrl.cleanedTime = Double(DurationMin * 60 + DurationSec)
             timerCtrl.maxValue = timerCtrl.cleanedTime
         }
     }
-
-
+    
+    func timerReset(){
+        withAnimation {
+            isOpenPicker = false
+        }
+        timerCtrl.stopTimer()
+        timerCtrl.cleanedTime = Double(DurationMin * 60 + DurationSec)
+        print("\(timerCtrl.cleanedTime)")
+        timerCtrl.maxValue = timerCtrl.cleanedTime
+        timerCtrl.remainAmount = 1 // リセットしたら満タン
+    }
+    
+    func timerStartStop(){
+        if (timerCtrl.timer == nil) {
+            timerCtrl.startTimer(interval: 0.05) // intervalは秒？ 実質精度コントロール「
+        } else {
+            timerCtrl.stopTimer()
+        }
+    }
 }
 
 #Preview {

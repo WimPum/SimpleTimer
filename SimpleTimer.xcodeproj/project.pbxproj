@@ -12,6 +12,8 @@
 		B1362D872BD26C17003976F9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1362D862BD26C17003976F9 /* Preview Assets.xcassets */; };
 		B1362D942BD26E31003976F9 /* TimerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1362D8E2BD26E31003976F9 /* TimerLogic.swift */; };
 		B1362D962BD26E31003976F9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1362D902BD26E31003976F9 /* ContentView.swift */; };
+		B18AB4A12BDE8E57006694A6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18AB4A02BDE8E57006694A6 /* Extensions.swift */; };
+		B18AB4A32BDE928E006694A6 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18AB4A22BDE928E006694A6 /* PickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		B1362D862BD26C17003976F9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B1362D8E2BD26E31003976F9 /* TimerLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLogic.swift; sourceTree = "<group>"; };
 		B1362D902BD26E31003976F9 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B18AB4A02BDE8E57006694A6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B18AB4A22BDE928E006694A6 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 				B1362D902BD26E31003976F9 /* ContentView.swift */,
 				B1362D7F2BD26C15003976F9 /* SimpleTimerApp.swift */,
 				B1362D8E2BD26E31003976F9 /* TimerLogic.swift */,
+				B18AB4A22BDE928E006694A6 /* PickerView.swift */,
+				B18AB4A02BDE8E57006694A6 /* Extensions.swift */,
 				B1362D832BD26C17003976F9 /* Assets.xcassets */,
 				B1362D852BD26C17003976F9 /* Preview Content */,
 			);
@@ -143,6 +149,8 @@
 				B1362D962BD26E31003976F9 /* ContentView.swift in Sources */,
 				B1362D942BD26E31003976F9 /* TimerLogic.swift in Sources */,
 				B1362D802BD26C15003976F9 /* SimpleTimerApp.swift in Sources */,
+				B18AB4A32BDE928E006694A6 /* PickerView.swift in Sources */,
+				B18AB4A12BDE8E57006694A6 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +292,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -313,6 +322,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
