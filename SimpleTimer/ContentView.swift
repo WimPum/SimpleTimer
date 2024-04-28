@@ -29,7 +29,7 @@ struct ContentView: View {
                 Text("\(String(format: "%02d", Int(timerCtrl.cleanedTime / 60))):\(String(format: "%02d", Int(timerCtrl.cleanedTime) % 60))") // 数字でタイマー表示(分:秒)
                     .font(.system(size: CGFloat(100), weight: .light, design: .default))
                     .padding()
-            }.frame(height: 400)
+            }.frame(height: 380)
             HStack(){ // ボタンたち
                 Spacer()
                 Button(action: {
@@ -45,7 +45,7 @@ struct ContentView: View {
                 }
                 Spacer()
             }.frame(height: 20)
-            .padding()
+                .padding(.vertical)
             
             Form{
                 Section{
@@ -70,7 +70,7 @@ struct ContentView: View {
                     isOpenPicker ? PickerView(DurationMin: $DurationMin, DurationSec: $DurationSec) : nil
                 }
             }
-            .scrollCBIfPossible()
+            //.scrollCBIfPossible()
             .foregroundStyle(.black)
             .pickerStyle(WheelPickerStyle())
             //.border(.black)
