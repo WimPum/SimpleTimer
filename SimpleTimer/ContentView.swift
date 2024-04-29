@@ -55,22 +55,27 @@ struct ContentView: View {
                                 isOpenPicker.toggle()
                             }
                         }
-                        else {
+                        else if (timerCtrl.timer == nil){
                             timerReset()
+                        }
+                        else {
+                            withAnimation {
+                                isOpenPicker = false
+                            }
                         }
                     } label: {
                         HStack {
                             Text("開始")
                                 .foregroundColor(.primary)
                             Spacer()
-                            Text("\(String(format: "%02d", Int(timerCtrl.cleanedTime / 60))):\(String(format: "%02d", Int(timerCtrl.cleanedTime) % 60))")
+                            Text("\(String(format: "%02d", DurationMin)):\(String(format: "%02d", DurationSec))")
                                 .foregroundColor(isOpenPicker ? .blue : .secondary)
                         }
                     }
                     isOpenPicker ? PickerView(DurationMin: $DurationMin, DurationSec: $DurationSec) : nil
                 }
             }
-            //.scrollCBIfPossible()
+            .scrollCBIfPossible()
             .foregroundStyle(.black)
             .pickerStyle(WheelPickerStyle())
             //.border(.black)
